@@ -1,0 +1,163 @@
+\documentclass[10pt,landscape]{article}
+\usepackage{multicol}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage{titlesec}
+
+% This sets page margins
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+	{ \geometry{top=.2in,left=.5in,right=.5in,bottom=.75in} }
+	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	}
+% Turns off header and footer
+\pagestyle{empty}
+
+% Turns off section numbers
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\begin{document}
+
+\raggedright
+
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{30pt}
+
+\titleformat*{\section}{\Large\bfseries\rmfamily}
+\titleformat*{\subsection}{\Large\itshape}
+
+\begin{center}
+\bfseries\rmfamily\Huge VIM CHEAT SHEET
+\end{center}
+\vspace{.1in}
+
+\begin{multicols*}{3}
+
+\section{MODES}
+\subsection{normal}
+In normal mode, everything that is interpreted as commands \\
+\vspace{5pt}
+\begin{tabular}{@{\hspace{2mm}}ll@{}}
+{\bfseries esc} &~ normal mode \\
+\end{tabular}
+
+\subsection{insert}
+To type new text, use insert mode. \\
+\vspace{5pt}
+\begin{tabular}{@{\hspace{2mm}}ll@{}}
+{\bfseries i} &~ insert before cursor \\
+{\bfseries shft+i} &~ insert at beginning of line \\
+{\bfseries a} &~ append after cursor \\
+{\bfseries shft+a} &~ append at end of the line \\
+{\bfseries shft+c} &~ change to the end of line \\
+{\bfseries s} &~ substitute characters \\
+{\bfseries shft+s} &~ subsitute the whole line \\
+{\bfseries r} &~ replace one character \\
+{\bfseries shft+r} &~ replace many characters \\
+{\bfseries o} &~ open new line after the current line \\
+{\bfseries shft+o} &~ open new line before the current line \\
+\end{tabular}
+
+\subsection{visual}
+Visual mode allows highlighting of text \\
+\vspace{5pt}
+\begin{tabular}{@{\hspace{2mm}}ll@{}}
+{\bfseries v} &~ plain visual mode \\
+{\bfseries ctrl+shft+v} &~ block viual mode \\
+{\bfseries shft+v} &~ linewise-visual mode \\
+\end{tabular}
+
+\subsection{command-line}
+To enter commands from the command line \\
+\vspace{5pt}
+\begin{tabular}{@{\hspace{2mm}}ll@{}}
+{\bfseries :} &~ command-line mode \\
+{\bfseries :{\em command}} &~ run {\em command}\\
+{\bfseries /{\em pattern}} &~ search forward for pattern \\
+{\bfseries ?{\em pattern}} &~ search backward for pattern\\
+{\bfseries s/{\em old}/{\em new}/g} &~ substitutes all\\ &~ occurences of {\em old} with {\em new} \\
+\end{tabular}
+
+
+\section{STATUS}
+\begin{tabular}{@{\hspace{1mm}}ll@{}}
+{\bfseries ctrl+shft+g} &~ displays file name and \\
+&~ the position in the file \\
+\end{tabular}
+
+\section{MOTION}
+\begin{tabular}{@{\hspace{1mm}}ll@{}}
+{\bfseries h} &~ left \\
+{\bfseries j} &~ down \\
+{\bfseries k} &~ up \\
+{\bfseries l} &~ right \\
+{\bfseries w} &~ next word \\
+{\bfseries shft+w} &~ next blank delimited word \\
+{\bfseries b} &~ beginning of the word \\
+{\bfseries shft+b} &~ beginning of blank delimited word \\
+{\bfseries e} &~ end of word \\
+{\bfseries shft+e} &~ end of blank delimited word \\
+{\bfseries (} &~ last sentence \\
+{\bfseries )} &~ next sentence \\
+{\bfseries \{} &~ last paragraph \\
+{\bfseries \}} &~ next paragraph \\
+{\bfseries 0} &~ beginning of line \\
+{\bfseries \$} &~ end of line \\
+{\bfseries {\em n motion}} &~ perform {\em motion} {\em n} times \\
+{\bfseries gg} &~ move to the top of the file \\
+{\bfseries {\em n} shft+g} &~ {\em nth} line of file \\
+{\bfseries :{\em n}} &~ {\em nth} line of file \\
+{\bfseries shft+g} &~ last line of file \\
+{\bfseries shft+h} &~ top of screen \\
+{\bfseries shft+m} &~ middle of screen \\
+{\bfseries shft+l} &~ bottom of screen \\
+\end{tabular}
+
+
+\section{DELETING}
+\begin{tabular}{@{\hspace{1mm}}ll@{}}
+{\bfseries x} &~ delete character to the right \\
+{\bfseries shft+x} &~ delete character the left \\
+{\bfseries d {\em motion}} &~ delete {\em motion} \\
+{\bfseries shft+d} &~ delete to the end of line \\
+{\bfseries dd} &~ delete current line \\
+{\bfseries {\em n} d {\em motion}} &~ perform delete {\em motion} {\em n} times \\
+\end{tabular}
+
+
+\section{OTHER}
+\begin{tabular}{@{\hspace{1mm}}ll@{}}
+{\bfseries u} &~ undo last change \\
+{\bfseries shft+u} &~ undo all changes to line \\
+{\bfseries p} &~ puts contents of Vim \\ &~ register on line below the cursor \\
+{\bfseries c {\em n motion}} &~ change {\em motion} {\em n} times  \\
+\end{tabular}
+
+\section{FILE}
+\begin{tabular}{@{\hspace{1mm}}ll@{}}
+{\bfseries :w {\em file}} &~ write to {\em file} \\
+{\bfseries :r file} &~ read {\em file} in after line \\
+{\bfseries :n} &~ go to next file \\
+{\bfseries :p} &~ go to previous file \\
+{\bfseries :e {\em file}} &~ edit {\em file} \\
+{\bfseries !!cmd} &~ replace line with output of cmd \\
+\end{tabular}
+
+
+\section{QUITTING}
+\begin{tabular}{@{\hspace{1mm}}ll@{}}
+{\bfseries :x} &~ exit, saving changes \\
+{\bfseries :wq} &~ exit, saving changes \\
+{\bfseries :q} &~ exit, if no changes \\
+{\bfseries :q!} &~ exit, ignore changes \\
+\end{tabular}
+
+
+\end{multicols*}
+
+\end{document}
