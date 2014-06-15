@@ -1,0 +1,137 @@
+\documentclass[10pt,landscape]{article}
+\usepackage{multicol}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage{titlesec}
+% This sets page margins
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+	{ \geometry{top=.2in,left=.6in,right=.2in,bottom=.5in} }
+	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	}
+% Turns off header and footer
+\pagestyle{empty}
+
+% Turns off section numbers
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\begin{document}
+
+\raggedright
+
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\titleformat*{\section}{\normalsize\bfseries\rmfamily}
+
+\begin{center}
+\bfseries\rmfamily\Huge UNIX CHEAT SHEET
+\end{center}
+\vspace{.1in}
+
+\begin{multicols}{2}
+
+\section{FILE COMMANDS}
+\begin{tabular}{@{\hspace{1mm}}ll@{}}
+{\bfseries ls} &~ directory listing \\
+{\bfseries ls -al} &~ formatted listing with hidden files \\
+{\bfseries cd dir} &~ change directory to dir \\
+%{\bfseries cd $\sim$} &~ change to home \\
+{\bfseries pwd} &~ show current directory \\
+{\bfseries mkdir {\em dir}} &~ create directory {\em dir} \\
+{\bfseries rm {\em file}} &~ delete {\em file} \\
+{\bfseries rm -r {\em dir}} &~ delete directory {\em dir} \\
+{\bfseries rm -f {\em file}} &~ force remove {\em file} \\
+{\bfseries rm -rf {\em dir}} &~ remove directory {\em dir} \\
+{\bfseries cp {\em file1 file2}} &~ copy {\em file1} to {\em file2} \\
+{\bfseries mv {\em file1 file2}} &~ move {\em file1} to {\em file2} \\
+{\bfseries ln -s {\em file link}} &~ create symbolic link {\em link} to {\em file} \\
+{\bfseries touch {\em file}} &~ create or update {\em file} \\
+{\bfseries cat {\em file}} &~ output {\em file} \\
+{\bfseries more {\em file}} &~ output the contents of {\em file} \\
+{\bfseries less {\em file}} &~ output the contents of {\em file} \\
+{\bfseries head {\em file}} &~ output the first 10 lines of {\em file} \\
+{\bfseries tail {\em file}} &~ output the last 10 lines of {\em file} \\
+{\bfseries tail -f {\em file}} &~ output the last 10 lines of {\em file} as it grows \\
+\end{tabular}
+
+\section{SHORTCUTS}
+\begin{tabular}{@{\hspace{1mm}}ll@{}}
+{\bfseries ctrl+c} &~ halts current command \\
+{\bfseries ctrl+z} &~ stops current command \\
+{\bfseries exit} &~ log out of current session \\
+{\bfseries ctrl+a} &~ move to the beginning of the line \\
+{\bfseries ctrl+e} &~ move to the end of the line \\
+{\bfseries ctrl+w} &~ erase one word in current line \\
+{\bfseries ctrl+u} &~ erases whole line \\
+{\bfseries clear} &~ clear \\
+{\bfseries history} &~ history of commands with id \\
+{\bfseries ctrl+r} &~ reverse lookup of previous commands \\
+{\bfseries !!} &~ repeat last command \\
+{\bfseries !\$} &~ repeat last argument \\
+{\bfseries !{\em id}} &~ repeat command by history id \\
+\end{tabular}
+
+\section{PROCESS MANAGEMENT}
+\begin{tabular}{@{\hspace{1mm}}ll@{}}
+{\bfseries ps} &~ display currently active processes \\
+{\bfseries ps aux} &~ display all(a) active processes \\ &~ by user(u) including background(b) processes  \\
+{\bfseries kill {\em id}} &~ kill process by {\em id} \\
+\end{tabular}
+
+\section{SYSTEM INFO}
+\begin{tabular}{@{\hspace{1mm}}ll@{}}
+{\bfseries date} &~ show current date/time \\
+{\bfseries cal} &~ show this month's calendar \\
+{\bfseries uptime} &~ show uptime \\
+{\bfseries w} &~ \\
+{\bfseries whoami} &~ who you are logged in as \\
+{\bfseries uname [-a]} &~ show kernel [config] \\
+{\bfseries df} &~ show disk usage \\
+{\bfseries du} &~ show directory space usage \\
+{\bfseries du -sh} &~ human readable space usage \\
+{\bfseries whereis {\em app}} &~ show possible locations of {\em app} \\
+{\bfseries which {\em app}} &~ show which {\em app} will be run by default \\
+\end{tabular}
+
+\section{SEARCH}
+\begin{tabular}{@{\hspace{1mm}}ll@{}}
+{\bfseries find {\em path} -name {\em file name}} &~ search for {\em file name} in {\em path} \\ 
+{\bfseries grep {\em pattern file}} &~ search for {\em pattern} in {\em file} \\
+{\bfseries grep -r {\em pattern dir}} &~ search recursively for {\em pattern} in {\em dir} \\
+{\bfseries command \textbar {\em pattern}} &~ search for {\em pattern} in the output of the command \\
+{\bfseries locate {\em file}} &~ find all instances of {\em file}\\
+\end{tabular}
+
+\section{NETWORK}
+\begin{tabular}{@{\hspace{1mm}}ll@{}}
+{\bfseries ping {\em host}} &~ ping host {\em host} \\
+{\bfseries whois {\em domain}} &~ get info for {\em domain} \\
+{\bfseries dig {\em domain}} &~ get DNS for {\em domain} \\
+{\bfseries dig -x {\em host}} &~ reverse lookup {\em host} \\
+{\bfseries scp user@host:file {\em local path}} &~ copy something from system to {\em local path} \\
+\end{tabular}
+
+\section{SSH}
+\begin{tabular}{@{\hspace{1mm}}ll@{}}
+{\bfseries ssh user@host} &~ connect to host as user \\
+{\bfseries ssh -p {\em port} user@host} &~ connect to host as user using {\em port} \\
+{\bfseries ssh -D {\em port} user@host} &~ connect to host as user using bind {\em port} \\
+\end{tabular}
+
+\section{FILE PERMISSIONS}
+\begin{tabular}{@{\hspace{1mm}}ll@{}}
+{\bfseries chown {\em owner file}} &~ change ownership of {\em file} to {\em owner} \\
+{\bfseries chmod {\em octal file}} &~ change permission of {\em file} \\
+&~ {\em octal} format as follows: \\
+&~ 4 read(r), 2 write(w), 1 execute(x) for owner/group/all \\
+\end{tabular}
+
+\end{multicols}
+
+\end{document}
